@@ -1,6 +1,6 @@
 ﻿Module Module1
-    Function Table_Headings() 'no inputs required'
-        'making the headings of the table'
+    Function Table_Headings() ' No inputs required
+        ' Making the headings of the table
         Console.WriteLine("Material /" & vbTab & "Time Taken (s)")
         Console.WriteLine("---------------------------------")
     End Function
