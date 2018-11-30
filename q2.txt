@@ -1,0 +1,137 @@
+Module Module1
+    Function Table_Headings() 'no inputs required'
+        'making the headings of the table'
+        Console.WriteLine("Material /" & vbTab & "Time Taken (s)")
+        Console.WriteLine("---------------------------------")
+    End Function
+
+    Function Distance_In(Wood As Double, Steel As Double, Titanium As Double) 'assighning our array of depths to internal variables within the function'
+        Dim Output
+        'making a variable within the function = what we want it to output, so we state what we want our internal function variables to = and then get them to = the format we want to output'
+        Output = "For distance in wood you entered: " & Wood & vbNewLine & "For distance in steel you entered: " & Steel & vbNewLine & "For distance in titanium you entered: " & Titanium
+        Console.WriteLine(Output)
+    End Function
+
+    Function average_time_to_reach_targer(Wood As Integer, Steel As Integer, Titanium As Integer, WoodD As Integer, SteelD As Integer, TitaniumD As Integer) 'Wood being the average speed the bullet travels through wood and woodD being the distance the bullet was fired from the wood'
+        Console.WriteLine("On average it took " & ((WoodD / Wood) + (SteelD / Steel) + (SteelD / Titanium)) / 3 & " seconds for the bullet to reach the targer")
+    End Function
+
+    Function minuse_six_from_index(i As Integer)
+        i = 6 - i
+
+    End Function
+
+    Sub Main()
+        'q1'
+
+        'Pre given values placed in acording arrays'
+        Dim average_speeds() As Double = {323.5, 180.8, 100.3}
+        Dim Distance_from_material() As Integer = {800, 500, 250}
+        Dim material() As String = {"Wood    ", "Steel   ", "Titanium"}
+        'A variable for the user to input a depth for ecah material'
+        Dim Depth(2)
+        'a usfull index for out for loops to work'
+        Dim i, i1
+
+
+        'asking the user to input a depth and then assighning that value to a possition in an array'
+        For i = 0 To 2
+            Console.WriteLine("Please enter the depth of " & Trim(material(i)) & " you are testing on in meters")
+            Depth(i) = Console.ReadLine
+            'making sure the assighned value is a positive integer (not including 0 as the average speed infers it spends time in the medium)'
+            For i1 = 0 To 2
+                If Depth(i) <= 0 Then
+                    'If it isnt, asking the user to input a value in again'
+                    Console.WriteLine("please enter a possitive double for the depth of " & Trim(material(i)))
+                    Depth(i) = Console.ReadLine()
+                End If
+
+            Next
+        Next
+
+        Console.WriteLine(vbNewLine)
+
+        Distance_In(Depth(0), Depth(1), Depth(2))
+
+        Console.WriteLine(vbNewLine)
+
+        average_time_to_reach_targer(average_speeds(0), average_speeds(1), average_speeds(2), Distance_from_material(0), Distance_from_material(1), Distance_from_material(2))
+
+        Console.WriteLine(vbNewLine)
+
+        'outputing the table of results'
+        Table_Headings()
+
+        'outputing the rows'
+        For i = 0 To 2
+            Console.WriteLine(material(i) & " /" & vbTab & Format(Depth(i) / average_speeds(i), "0.000"))
+        Next
+
+        'q2'
+
+
+        'arrays with modification factors & combos'
+        Dim Wood_Bullets() As Integer = {-3, 20, -30}
+        Dim Wood_Gunpowder() As Integer = {35, -10}
+        Dim Steel_Bullets() As Integer = {-5, 12, 5}
+        Dim Steel_Gunpowder() As Integer = {35, -10}
+        Dim Titanium_Bullets() As Integer = {-12, 5, 30}
+        Dim Titanium_Gunpowder() As Integer = {35, -10}
+        Dim Total_Mod_Wood(5)
+        Dim Total_Mod_Steel(5)
+        Dim Total_Mod_Titanium(5)
+        'combo array strings'
+        Dim Mod_Combo() As String = {"Blanks & Brown Gunpowder", "Lead Bullets & Brown Gunpowder", "Armour-Piercing Bullets & Brown Gunpowder", "Armour-Piercing Bullets & Sulphur-free Gunpoweder", "Lead Bullets & Sulphur-free Gunpoweder", "Blanks & Sulphur-free Gunpoweder"}
+
+
+        'some explanatory text to user'
+        Console.WriteLine(vbNewLine & "we will now investigate the affects of 3 modification to the bullet and 2 to the gunpoweder used to propel the bullet on its thus average speed" & vbNewLine)
+
+        'assining mod combos into arrays'
+        For i = 0 To 2
+            Total_Mod_Steel(i) = Steel_Bullets(i) + Steel_Gunpowder(0)
+        Next
+
+
+        For i1 = 3 To 5 Step 1
+            Total_Mod_Wood(i1) = Wood_Bullets((i1 / 2)) + Wood_Gunpowder(1)
+            Console.WriteLine(i1 & Wood_Bullets(i1))
+        Next
+
+
+        For i = 0 To 2
+            Total_Mod_Steel(i) = Steel_Bullets(i) + Steel_Gunpowder(0)
+            Total_Mod_Steel(minuse_six_from_index(i)) = Steel_Bullets(i) + Steel_Gunpowder(1)
+        Next
+
+        For i = 0 To 2
+            Total_Mod_Titanium(i) = Titanium_Bullets(i) + Titanium_Gunpowder(0)
+            Total_Mod_Titanium(minuse_six_from_index(i)) = Titanium_Bullets(i) + Titanium_Gunpowder(1)
+        Next
+
+        'writing out table headings'
+        Console.WriteLine(vbNewLine & "Modification" & vbTab & "|" & "Average time taken")
+        Console.WriteLine("===========================================")
+
+        'writing out table rows'
+        For i = 0 To 5 Step 1
+            Console.WriteLine(Mod_Combo(i) & vbTab & "|" & Format((Total_Mod_Wood(i) / 100), "0.000"))
+        Next
+
+        Console.WriteLine(vbNewLine & "Modification" & vbTab & "Average time taken")
+        Console.WriteLine("===========================================")
+
+        For i = 0 To 5 Step 1
+            Console.WriteLine(Mod_Combo(i) & vbTab & "|" & Format((Total_Mod_Steel(i) / 100), "0.000"))
+        Next
+
+        Console.WriteLine(vbNewLine & "Modification" & vbTab & "Average time taken")
+        Console.WriteLine("===========================================")
+
+        For i = 0 To 5 Step 1
+            Console.WriteLine(Mod_Combo(i) & vbTab & "|" & Format((Total_Mod_Titanium(i) / 100), "0.000"))
+        Next
+
+    End Sub
+
+End Module
