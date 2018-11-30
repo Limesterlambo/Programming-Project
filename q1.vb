@@ -5,14 +5,14 @@
         Console.WriteLine("------------------------------")
     End Function
 
-    Function Distance_In(Wood As Double, Steel As Double, Titanium As Double) ' Assigning our array of depths to internal variables within the function.
+    Function Distance_In(WoodD As Double, SteelD As Double, TitaniumD As Double) ' Assigning our array of depths to internal variables within the function.
         Dim Output
         ' Making a variable within the function = what we want it to output, so we state what we want our internal function variables to = and then get them to = the format we want to output.
-        Output = "For distance in wood you entered: " & Wood & vbNewLine & "For distance in steel you entered: " & Steel & vbNewLine & "For distance in titanium you entered: " & Titanium
+        Output = "For distance in wood you entered: " & WoodD & vbNewLine & "For distance in steel you entered: " & SteelD & vbNewLine & "For distance in titanium you entered: " & TitaniumD
         Console.WriteLine(Output)
     End Function
 
-    Function average_time_to_reach_targer(Wood As Integer, Steel As Integer, Titanium As Integer, WoodD As Integer, SteelD As Integer, TitaniumD As Integer)
+    Function average_time_to_reach_target(Wood As Integer, Steel As Integer, Titanium As Integer, WoodD As Integer, SteelD As Integer, TitaniumD As Integer)
         ' Wood being the average speed the bullet travels through wood and woodD being the distance the bullet was fired from the wood.
         Console.WriteLine("On average it took " & ((WoodD / Wood) + (SteelD / Steel) + (TitaniumD / Titanium)) / 3 & " seconds for the bullet to reach the target")
     End Function
@@ -24,7 +24,7 @@
         Dim Distance_from_material() As Integer = {800, 500, 250}
         Dim material() As String = {"Wood    ", "Steel   ", "Titanium"}
         ' A variable for the user to input a depth for each material.
-        Dim Depth(2)
+        Dim Depth(3)
         ' A useful index for out for loops to work.
         Dim i, i1
 
@@ -50,7 +50,7 @@
 
         Console.WriteLine(vbNewLine)
 
-        average_time_to_reach_targer(average_speeds(0), average_speeds(1), average_speeds(2), Distance_from_material(0), Distance_from_material(1), Distance_from_material(2))
+        average_time_to_reach_target(average_speeds(0), average_speeds(1), average_speeds(2), Depth(0), Depth(1), Depth(2))
 
         Console.WriteLine(vbNewLine)
 
