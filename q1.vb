@@ -14,7 +14,7 @@
 
     Function average_time_to_reach_targer(Wood As Integer, Steel As Integer, Titanium As Integer, WoodD As Integer, SteelD As Integer, TitaniumD As Integer)
         ' Wood being the average speed the bullet travels through wood and woodD being the distance the bullet was fired from the wood.
-        Console.WriteLine("On average it took " & ((WoodD / Wood) + (SteelD / Steel) + (SteelD / Titanium)) / 3 & " seconds for the bullet to reach the target")
+        Console.WriteLine("On average it took " & ((WoodD / Wood) + (SteelD / Steel) + (TitaniumD / Titanium)) / 3 & " seconds for the bullet to reach the target")
     End Function
 
     Sub Main()
