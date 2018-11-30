@@ -14,7 +14,7 @@
 
     Function average_time_to_reach_target(Wood As Integer, Steel As Integer, Titanium As Integer, WoodD As Integer, SteelD As Integer, TitaniumD As Integer)
         ' Wood being the average speed the bullet travels through wood and woodD being the distance the bullet was fired from the wood.
-        Console.WriteLine("On average it took " & ((WoodD / Wood) + (SteelD / Steel) + (TitaniumD / Titanium)) / 3 & " seconds for the bullet to reach the target")
+        Console.WriteLine("On average it took " & Format((((WoodD / Wood) + (SteelD / Steel) + (TitaniumD / Titanium)) / 3), "0.000") & " seconds for the bullet to reach the target.")
     End Function
 
     Sub Main()
@@ -31,7 +31,7 @@
 
         ' Asking the user to input a depth and then assigning that value to a possition in an array.
         For i = 0 To 2
-            Console.WriteLine("Please enter the depth of " & Trim(material(i)) & " you are testing on in meters")
+            Console.WriteLine("Please enter the depth of " & Trim(material(i)) & " you are testing on in meters:")
             Depth(i) = Console.ReadLine
             ' Making sure the assighned value is a positive integer (not including 0 as the average speed infers it spends time in the medium).
             For i1 = 0 To 2
@@ -50,10 +50,6 @@
 
         Console.WriteLine(vbNewLine)
 
-        average_time_to_reach_target(average_speeds(0), average_speeds(1), average_speeds(2), Depth(0), Depth(1), Depth(2))
-
-        Console.WriteLine(vbNewLine)
-
         ' Outputing the table of results.
         Table_Headings()
 
@@ -61,6 +57,11 @@
         For i = 0 To 2
             Console.WriteLine(material(i) & " |" & vbTab & Format(Depth(i) / average_speeds(i), "0.000"))
         Next
+
+        Console.WriteLine(vbNewLine)
+        average_time_to_reach_target(average_speeds(0), average_speeds(1), average_speeds(2), Depth(0), Depth(1), Depth(2))
+
+
 
     End Sub
 End Module
