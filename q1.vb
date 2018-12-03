@@ -1,67 +1,139 @@
 ﻿Module Module1
-    Function Table_Headings() ' No arguments required.
-        ' Making the headings of the table.
-        Console.WriteLine("Material |" & vbTab & "Time Taken (s)")
-        Console.WriteLine("------------------------------")
+    Dim t
+    Dim current_line
+
+    'to seperate your work out in the command prompt.
+    Function Space(Number_of_Spaces)
+        For i = 1 To Number_of_Spaces
+            Console.Write(vbNewLine)
+        Next
     End Function
 
-    Function Distance_In(WoodD As Double, SteelD As Double, TitaniumD As Double) ' Assigning our array of depths to internal variables within the function.
-        Dim Output
-        ' Making a variable within the function = what we want it to output, so we state what we want our internal function variables to = and then get them to = the format we want to output.
-        Output = "For distance in wood you entered: " & WoodD & vbNewLine & "For distance in steel you entered: " & SteelD & vbNewLine & "For distance in titanium you entered: " & TitaniumD
-        Console.WriteLine(Output)
+    'General up to 5 column table maker.
+    Function Table_Heading(Number_of_columnns As Integer, Heading1 As String, Heading2 As String, Heading3 As String, Heading4 As String, Heading5 As String)
+        Dim n
+        n = Number_of_columnns
+        If n > 0 Then
+            Console.Write(Heading1 & vbTab & "|" & vbTab)
+        Else
+            Console.Write("")
+        End If
+
+        If n > 1 Then
+            Console.Write(Heading2 & vbTab & "|" & vbTab)
+        Else
+            Console.Write("")
+        End If
+
+        If n > 2 Then
+            Console.Write(Heading3 & vbTab & "|" & vbTab)
+        Else
+            Console.Write("")
+        End If
+
+        If n > 3 Then
+            Console.Write(Heading4 & vbTab & "|" & vbTab)
+        Else
+            Console.Write("")
+        End If
+
+        If n > 4 Then
+            Console.WriteLine(Heading5 & vbTab & "|" & vbTab)
+        Else
+            Console.WriteLine("")
+        End If
+        'If the table devision is off, modify the number of times "-" string is duplicated.
+        Console.WriteLine(StrDup((n * 17) + 7, "-"))
     End Function
 
-    Function average_time_to_reach_target(Wood As Integer, Steel As Integer, Titanium As Integer, WoodD As Integer, SteelD As Integer, TitaniumD As Integer)
-        ' Wood being the average speed the bullet travels through wood and woodD being the distance the bullet was fired from the wood.
-        Console.WriteLine("On average it took " & Format((((WoodD / Wood) + (SteelD / Steel) + (TitaniumD / Titanium)) / 3), "0.000") & " seconds for the bullet to reach the target.")
+    'time = distance/velocity rearranged from velocity = (distance/time), assuming SI units.
+    Function Time_Taken(distance As Double, speed As Integer)
+        t = (distance / speed)
+    End Function
+
+    'writing data to a text file on consecutive lines.
+    Function Write_To_txt(file_path, Data)
+        Dim file_writer = My.Computer.FileSystem.OpenTextFileWriter(file_path, True)
+
+        file_writer.WriteLine(Data)
+
+        file_writer.Close()
+    End Function
+
+    'Reading data from particular lines in a text file.
+    Function Read_From_txt(file_path, line)
+        Dim file_reader = My.Computer.FileSystem.OpenTextFileReader(file_path)
+        Dim i = 0
+
+        current_line = file_reader.ReadLine()
+
+        While i < line
+            current_line = file_reader.ReadLine()
+            i = i + 1
+        End While
+
+    End Function
+
+    'Average calculator.
+    Function Average(Total, number_of_data_samples)
+        Average = Total / number_of_data_samples
     End Function
 
     Sub Main()
+        Dim material = {"Wood    ", "Steel   ", "Titanium"}
+        Dim Average_speed = {323.5, 180.8, 100.3}
+        Dim depth(2)
+        Dim pre_average_time As Double 'the variable that will be used to calculate the average time.
 
-        ' Pre given values placed in acording arrays.
-        Dim average_speeds() As Double = {323.5, 180.8, 100.3}
-        Dim Distance_from_material() As Integer = {800, 500, 250}
-        Dim material() As String = {"Wood    ", "Steel   ", "Titanium"}
-        ' A variable for the user to input a depth for each material.
-        Dim Depth(3)
-        ' A useful index for out for loops to work.
-        Dim i, i1
-
-
-        ' Asking the user to input a depth and then assigning that value to a possition in an array.
+        'q1 part c - fore user to input positive doubles. 
         For i = 0 To 2
             Console.WriteLine("Please enter the depth of " & Trim(material(i)) & " you are testing on in meters:")
-            Depth(i) = Console.ReadLine
+            depth(i) = Console.ReadLine
             ' Making sure the assighned value is a positive integer (not including 0 as the average speed infers it spends time in the medium).
             For i1 = 0 To 2
-                If Depth(i) <= 0 Then
-                    ' If it isnt, asking the user to input a value in again.
+                If depth(i) <= 0 Then
+                    ' If it isnt, asking the user to reinput a value
                     Console.WriteLine("please enter a possitive double for the depth of " & Trim(material(i)))
-                    Depth(i) = Console.ReadLine()
+                    depth(i) = Console.ReadLine()
                 End If
-
             Next
         Next
 
-        Console.WriteLine(vbNewLine)
+        Space(1)
 
-        Distance_In(Depth(0), Depth(1), Depth(2))
-
-        Console.WriteLine(vbNewLine)
-
-        ' Outputing the table of results.
-        Table_Headings()
-
-        ' Outputing the rows.
+        'q1 part a.
+        '-part 1 - confirming users inputed depths with them.
         For i = 0 To 2
-            Console.WriteLine(material(i) & " |" & vbTab & Format(Depth(i) / average_speeds(i), "0.000"))
+            Console.WriteLine("For distance in " & Trim(material(i)) & " you entered: " & depth(i) & " metres")
         Next
 
-        Console.WriteLine(vbNewLine)
-        average_time_to_reach_target(average_speeds(0), average_speeds(1), average_speeds(2), Depth(0), Depth(1), Depth(2))
+        Space(1)
+        '-part 2 - forming a table for the time taken by the bullet to reach the target.
 
+        '--Designing  the table columns.
+        Table_Heading(2, "Material", "Time Taken (s)", "", "", "")
 
+        '--Designing  the table rows.
+        For i = 0 To 2
+            Console.Write(material(i) & vbTab & "|" & vbTab)
+            Time_Taken(depth(i), Average_speed(i))
+            Console.WriteLine(Format(t, "0.000") & vbTab & vbTab & "|")
 
+            'storing the data in a text file for later use.
+            Write_To_txt("C:\Users\Nickq20\Documents\UNI\Programming\Course_Work\Q1-Code\Data File.txt", t)
+        Next
+
+        Space(1)
+
+        'q1 part b.
+        '-adding up pre stored times for each material so we can find the average.
+        For i = 1 To 3
+            Read_From_txt("C:\Users\Nickq20\Documents\UNI\Programming\Course_Work\Q1-Code\Data File.txt", i)
+            pre_average_time = current_line + pre_average_time
+        Next
+
+        '-average calculation.
+        Console.WriteLine("""The time taken by the bullet to reach the target on average"" = " & Format((Average(pre_average_time, 3)), "0.0000"))
     End Sub
+
 End Module
