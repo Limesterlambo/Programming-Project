@@ -3,8 +3,8 @@
     Dim current_line
 
     'to seperate your work out in the command prompt.
-    Function Space(Number_of_Spaces)
-        For i = 1 To Number_of_Spaces
+    Function newlines(Number_of_newlines)
+        For i = 1 To Number_of_newlines
             Console.Write(vbNewLine)
         Next
     End Function
@@ -99,7 +99,7 @@
             Next
         Next
 
-        Space(1)
+newlines(1)
 
         'q1 part a.
         '-part 1 - confirming users inputed depths with them.
@@ -107,7 +107,7 @@
             Console.WriteLine("For distance in " & Trim(material(i)) & " you entered: " & depth(i) & " metres")
         Next
 
-        Space(1)
+newlines(1)
         '-part 2 - forming a table for the time taken by the bullet to reach the target.
 
         '--Designing  the table columns.
@@ -123,7 +123,7 @@
             Write_To_txt("C:\Users\Nickq20\Documents\UNI\Programming\Course_Work\Q1-Code\Data File.txt", t)
         Next
 
-        Space(1)
+newlines(1)
 
         'q1 part b.
         '-adding up pre stored times for each material so we can find the average.
