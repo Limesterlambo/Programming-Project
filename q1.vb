@@ -1,4 +1,6 @@
-﻿Module Module1
+'This program is desighend to be helpfull to the scientists who will be using it, asking them to input depths, checking wether the value they inputed was a valed one, aka above 100; and then going throw a secondary verification process of confirming with them the value they inpute. the program will then inform the scientists the period the buttel spent in the medium, and then the average times over the 3 materials the bullet spent in the medium .
+
+Module Module1
     Dim t
     Dim current_line
 
@@ -52,17 +54,19 @@
     End Function
 
     'writing data to a text file on consecutive lines.
-    Function Write_To_txt(file_path, Data)
-        Dim file_writer = My.Computer.FileSystem.OpenTextFileWriter(file_path, True)
+    Function Write_To_txt(file_name, Data)
 
-        file_writer.WriteLine(Data)
+        'Creating a directory for the text file (optional, could be useful for keeping track of multiple text files)
+        My.Computer.FileSystem.CreateDirectory("Q1")
 
-        file_writer.Close()
+        'Creating/writing to a text file, located within the directory we just created above
+        My.Computer.FileSystem.WriteAllText("Q1\" & file_name, Data & vbNewLine, True)
+
     End Function
 
     'Reading data from particular lines in a text file.
-    Function Read_From_txt(file_path, line)
-        Dim file_reader = My.Computer.FileSystem.OpenTextFileReader(file_path)
+    Function Read_From_txt(file_name, line)
+        Dim file_reader = My.Computer.FileSystem.OpenTextFileReader("Q1\" & file_name)
         Dim i = 0
 
         current_line = file_reader.ReadLine()
@@ -99,7 +103,7 @@
             Next
         Next
 
-newlines(1)
+        newlines(1)
 
         'q1 part a.
         '-part 1 - confirming users inputed depths with them.
@@ -107,7 +111,7 @@ newlines(1)
             Console.WriteLine("For distance in " & Trim(material(i)) & " you entered: " & depth(i) & " metres")
         Next
 
-newlines(1)
+        newlines(1)
         '-part 2 - forming a table for the time taken by the bullet to reach the target.
 
         '--Designing  the table columns.
@@ -120,15 +124,15 @@ newlines(1)
             Console.WriteLine(Format(t, "0.000") & vbTab & vbTab & "|")
 
             'storing the data in a text file for later use.
-            Write_To_txt("C:\Users\Nickq20\Documents\UNI\Programming\Course_Work\Q1-Code\Data File.txt", t)
+            Write_To_txt("Bullet period in medium.txt", t)
         Next
 
-newlines(1)
+        newlines(1)
 
         'q1 part b.
         '-adding up pre stored times for each material so we can find the average.
         For i = 1 To 3
-            Read_From_txt("C:\Users\Nickq20\Documents\UNI\Programming\Course_Work\Q1-Code\Data File.txt", i)
+            Read_From_txt("Bullet period in medium.txt", i)
             pre_average_time = current_line + pre_average_time
         Next
 
