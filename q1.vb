@@ -1,11 +1,11 @@
 '07/12/18.	Module Module1
 'Nicholas Letchford-Jones.	
-'This program is desighend to be helpfull to the scientists who will be using it, asking them to input depths, checking wether the value they inputed was a valed one, aka above 100; and then going throw a secondary verification process of confirming with them the value they inpute. the program will then inform the scientists the period the buttel spent in the medium, and then the average times over the 3 materials the bullet spent in the medium .﻿
+'This program is designed to be helpful to the scientists who will be using it, asking them to input depths, checking whether the are valid field results, aka above 0; and then going throw a secondary verification process of confirming with them the value they input. the program will then inform the scientists the period the bullet spent in the medium, and then the average times over the 3 materials the bullet spent in the medium.
 Module Module1
-    Dim current_line
+    Dim t
 
     '  To seperate your work out in the command prompt.
-    Function newlines(Number_of_newlines)
+    Function newlines(Number_of_newlines As Integer)
         For i = 1 To Number_of_newlines
             Console.Write(vbNewLine)
         Next
@@ -49,33 +49,31 @@ Module Module1
     End Function
 
     ' Time = distance/velocity rearranged from velocity = (distance/time), assuming SI units.
-    Function Time_Taken(distance As Double, speed As Integer)
+    Function Time_Taken(distance, speed) As Double
         Time_Taken = (distance / speed)
     End Function
 
     ' Average calculator.
-    Function Average(Total, number_of_data_samples)
+    Function Average(Total, number_of_data_samples) As Double
         Average = Total / number_of_data_samples
     End Function
 
     Sub Main()
         Dim material = {"Wood    ", "Steel   ", "Titanium"}
         Dim Average_speed = {323.5, 180.8, 100.3}
-        Dim depth(2)
-        Dim pre_average_time, t As Double 'pre_average_time that will be used to calculate the average time.
+        Dim depth(2) As Double
+        Dim t, total_time As Double
 
         ' Q1 part c - fore user to input positive doubles. 
         For i = 0 To 2
             Console.WriteLine("Please enter the depth of " & Trim(material(i)) & " you are testing on in meters:")
             depth(i) = Console.ReadLine
             ' Making sure the assighned value is a positive integer (not including 0 as the average speed infers it spends time in the medium).
-            For i1 = 0 To 2
-                If depth(i) <= 0 Then
-                    ' If it isnt, asking the user to reinput a value
-                    Console.WriteLine("please enter a possitive double for the depth of " & Trim(material(i)))
+            While depth(i) <= 0
+                ' If it isnt, asking the user to reinput a value
+                Console.WriteLine("please enter a possitive double for the depth of " & Trim(material(i)))
                     depth(i) = Console.ReadLine()
-                End If
-            Next
+            End While
         Next
 
         newlines(1)
@@ -97,14 +95,14 @@ Module Module1
             Console.Write(material(i) & vbTab & "|" & vbTab)
             t = Time_Taken(depth(i), Average_speed(i))
             Console.WriteLine(Format(t, "0.000") & vbTab & vbTab & "|")
+            total_time = total_time + t
         Next
 
         newlines(1)
 
         ' Q1 part b.
-
         ' -Average calculation.
-        Console.WriteLine("""The time taken by the bullet to reach the target on average"" = " & Format((Average(t(0)+t(1)+t(2), 3)), "0.0000"))
+        Console.WriteLine("""The time taken by the bullet to reach the target on average"" was " & Format(Average(total_time, 3), "0.0000") & " seconds")
     End Sub
 
 End Module
