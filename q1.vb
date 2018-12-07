@@ -53,29 +53,6 @@ Module Module1
         Time_Taken = (distance / speed)
     End Function
 
-    ' Writing data to a text file on consecutive lines.
-    Function Write_To_txt(file_path, Data)
-        Dim file_writer = My.Computer.FileSystem.OpenTextFileWriter(file_path, True)
-
-        file_writer.WriteLine(Data)
-
-        file_writer.Close()
-    End Function
-
-    ' Reading data from particular lines in a text file.
-    Function Read_From_txt(file_path, line)
-        Dim file_reader = My.Computer.FileSystem.OpenTextFileReader(file_path)
-        Dim i = 0
-
-        current_line = file_reader.ReadLine()
-
-        While i < line
-            current_line = file_reader.ReadLine()
-            i = i + 1
-        End While
-
-    End Function
-
     ' Average calculator.
     Function Average(Total, number_of_data_samples)
         Average = Total / number_of_data_samples
@@ -120,22 +97,14 @@ Module Module1
             Console.Write(material(i) & vbTab & "|" & vbTab)
             t = Time_Taken(depth(i), Average_speed(i))
             Console.WriteLine(Format(t, "0.000") & vbTab & vbTab & "|")
-
-            '  Storing the data in a text file for later use.
-            Write_To_txt("C:\Users\Nickq20\Documents\UNI\Programming\Course_Work\Q1-Code\Data File.txt", t)
         Next
 
         newlines(1)
 
         ' Q1 part b.
-        ' -Adding up pre stored times for each material so we can find the average.
-        For i = 1 To 3
-            Read_From_txt("C:\Users\Nickq20\Documents\UNI\Programming\Course_Work\Q1-Code\Data File.txt", i)
-            pre_average_time = current_line + pre_average_time
-        Next
 
         ' -Average calculation.
-        Console.WriteLine("""The time taken by the bullet to reach the target on average"" = " & Format((Average(pre_average_time, 3)), "0.0000"))
+        Console.WriteLine("""The time taken by the bullet to reach the target on average"" = " & Format((Average(t(0)+t(1)+t(2), 3)), "0.0000"))
     End Sub
 
 End Module
