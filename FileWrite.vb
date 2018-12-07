@@ -8,7 +8,7 @@
         My.Computer.FileSystem.WriteAllText("FolderName\TextFile.txt", "Text String" & vbNewLine, True)
 
         'The directory containing the file is located in the project folder: "[Project name]\obj\debug"
-        'Note that this folder is only created after the solution is built at least once beforehand
+        'Note that this folder is only created after the solution is built/run at least once beforehand
     End Sub
 
 End Module
