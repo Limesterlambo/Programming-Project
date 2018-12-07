@@ -1,4 +1,7 @@
-﻿Module Module1
+'07/12/18.	Module Module1
+'Nicholas Letchford-Jones.	
+'This program is desighend to be helpfull to the scientists who will be using it, asking them to input depths, checking wether the value they inputed was a valed one, aka above 100; and then going throw a secondary verification process of confirming with them the value they inpute. the program will then inform the scientists the period the buttel spent in the medium, and then the average times over the 3 materials the bullet spent in the medium .﻿
+Module Module1
     Dim current_line
 
     '  To seperate your work out in the command prompt.
