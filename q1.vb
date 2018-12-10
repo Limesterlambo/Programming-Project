@@ -11,41 +11,24 @@ Module Module1
         Next
     End Function
 
-    '  General up to 5 column table maker.
-    Function Table_Heading(Number_of_columnns As Integer, Heading1 As String, Heading2 As String, Heading3 As String, Heading4 As String, Heading5 As String)
-        Dim n
-        n = Number_of_columnns
-        If n > 0 Then
-            Console.Write(Heading1 & vbTab & "|" & vbTab)
-        Else
-            Console.Write("")
-        End If
+'  Fuction for generating table column heading for up to 5 columns
+    Function Table_Heading(Number_of_columnns As Integer, Heading0 As String, Heading1 As String, Heading2 As String, Heading3 As String, Heading4 As String)
+        Dim Headings(4) As String
+        Headings(0) = Heading0
+        Headings(1) = Heading1
+        Headings(2) = Heading2
+        Headings(3) = Heading3
 
-        If n > 1 Then
-            Console.Write(Heading2 & vbTab & "|" & vbTab)
-        Else
-            Console.Write("")
-        End If
+        For I = 0 To 4
+            If Number_of_columnns > I Then
+                Console.Write(Headings(I) & vbTab & "|" & vbTab)
+            Else
+                Console.Write("")
+            End If
+        Next
 
-        If n > 2 Then
-            Console.Write(Heading3 & vbTab & "|" & vbTab)
-        Else
-            Console.Write("")
-        End If
-
-        If n > 3 Then
-            Console.Write(Heading4 & vbTab & "|" & vbTab)
-        Else
-            Console.Write("")
-        End If
-
-        If n > 4 Then
-            Console.WriteLine(Heading5 & vbTab & "|" & vbTab)
-        Else
-            Console.WriteLine("")
-        End If
         ' If the table devision is off, modify the number of times "-" string is duplicated.
-        Console.WriteLine(StrDup((n * 17) + 7, "-"))
+        Console.WriteLine(vbNewLine & StrDup((Number_of_columnns * 17) + 7, "-"))
     End Function
 
     ' Time = distance/velocity rearranged from velocity = (distance/time), assuming SI units.
