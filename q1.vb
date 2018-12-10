@@ -18,6 +18,7 @@ Module Module1
         Headings(1) = Heading1
         Headings(2) = Heading2
         Headings(3) = Heading3
+        Headings(4) = Heading4
 
         For I = 0 To 4
             If Number_of_columnns > I Then
