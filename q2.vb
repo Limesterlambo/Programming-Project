@@ -51,14 +51,14 @@
 
         'Array to contain, sorted from smallest to largest, average time taken(s) of materials in each combination.
         Dim Sorted_Average_Time_Taken(6) As Double
-        ' Createing an array containing all possible combination titles that will be needed for the table.
+        ' Creating an array containing all possible combination titles that will be needed for the table.
         Dim Combination_Titles() As String = {"Blanks and brown gunpowder" & Space(15), "Lead and brown gunpowder" & Space(20), "Armor-piercing and brown gunpowder" & Space(10),
             "Blanks and sulphur-free gunpowder" & Space(8), "Lead and sulphur-free gunpowder" & Space(10), "Armor-piercing and sulphur-free gunpowder", "No modifications" & Space(25)}
 
         ' Creating three arrays, one for each material, to store the modified setup's average speeds. This array will be be used to calculate the times taken.
         Dim Mod_Average_Speed_Wood(2, 1), Mod_Average_Speed_Steel(2, 1), Mod_Average_Speed_Titanium(2, 1) As Double
 
-        'should we have one array for time take or multiple again? how does the array sort function work?
+        'Creating arrays for time taken in each material.
         Dim Time_Taken_Wood(6), Time_Taken_Steel(6), Time_Taken_Titanium(6) As Double
 
         Dim l As Integer
@@ -88,7 +88,7 @@
             End While
             depth(i) = CDbl(depth(i))
 
-            ' Making sure the value is positive. (not including 0 as the average speed infers it spends time in the medium).
+            ' Making sure the value is positive. (Not including 0 as the average speed infers it spends time in the medium).
             While depth(i) <= 0
                 ' If it isn't positve i.e. depth <= 0 , asking the user to re-input a value.
                 Console.WriteLine("ERROR: depth must be a positive value! " &
@@ -101,7 +101,7 @@
         Newlines(1)
 
         ' Q1 part (a).
-        ' Part 1 - confirming users inputted depths.
+        ' Part 1 - confirming user's inputted depths.
         For i = 0 To 2
             Console.WriteLine("For distance in " & LCase(Trim(material(i))) & " you entered: " & depth(i) & " metres")
         Next

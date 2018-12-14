@@ -1,7 +1,7 @@
 ﻿' 07/12/18.	
 ' Main contibutor: Nicholas Letchford-Jones.	
-' This program is designed to be helpful to the experimental team, asking them to input depths of the materirial they are testing, checking whether they are valid field results, 
-' aka above 0; The progam then confirmins with them the value they input. The program will Then inform the scientists the period the bullet 
+' This program is designed to be helpful to the experimental team, asking them to input depths of the material they are testing, checking whether they are valid field results, 
+' aka above 0; The progam then confirms with them the value that they input. The program will then inform the scientists of the period the bullet 
 ' spent in the medium. Finally the program prints out the average times the bullet spent in the medium over the 3 materials.
 Module Module1
     Dim t
@@ -30,7 +30,7 @@ Module Module1
             End If
         Next
 
-        ' If the table devision is off, modify the number of times "-" string is duplicated.
+        ' If the table division is off, modify the number of times "-" string is repeated.
         Console.WriteLine(vbNewLine & StrDup((Number_of_columnns * 17) + 7, "-"))
     End Function
 
@@ -51,12 +51,12 @@ Module Module1
         Dim t, total_time As Double
         Dim j
 
-        ' Q1 part c - fourcing the user to input positive doubles. 
+        ' Q1 part c - forcing the user to input positive doubles. 
         For i = 0 To 2
             Console.WriteLine("Please enter the depth of " & LCase(Trim(material(i))) & " you are testing on in meters:")
             depth(i) = Console.ReadLine
 
-            ' Loop Making sure the assighned value is a number
+            ' Loop making sure the assigned value is a number
             Int32.TryParse(depth(i), j)
             While j = False
                 Console.WriteLine("ERROR: depth must be a numerical! " & "Please re-enter the depth of " & LCase(Trim(material(i))) & " you are testing on in meters:")
@@ -65,9 +65,9 @@ Module Module1
             End While
             depth(i) = CDbl(depth(i))
 
-            ' Making sure the value is positive. (not including 0 as the average speed infers it spends time in the medium).
+            ' Making sure the value is positive. (Not including 0 as the average speed infers it spends time in the medium).
             While depth(i) <= 0
-                ' If it isnt positve ie. depth<=0 , asking the user to reinput a value
+                ' If it isn't positve i.e. depth <= 0 , asking the user to re-input a value
                 Console.WriteLine("ERROR: depth must be a positive value! " & "Please re-enter the depth of " & LCase(Trim(material(i))) & " you are testing on in meters:")
                 depth(i) = Console.ReadLine()
             End While
@@ -76,8 +76,8 @@ Module Module1
 
         Newlines(1)
 
-        ' Q1 part a.
-        ' Part 1 - confirming users inputed depths with them.
+        ' Q1 part (a)
+        ' Part 1 - confirming user's inputted depths.
         For i = 0 To 2
             Console.WriteLine("For distance in " & LCase(Trim(material(i))) & " you entered: " & depth(i) & " metres")
         Next
@@ -85,11 +85,11 @@ Module Module1
         Newlines(1)
         ' Part 2 - forming a table for the time taken by the bullet to reach the target.
 
-        ' Designing  the table columns.  
+        ' Designing the table columns.  
         Console.Write(Space(2))
         Table_Heading(2, "Material", "Time taken (s)", "", "", "")
 
-        ' Designing  the table rows.
+        ' Designing the table rows.
         For i = 0 To 2
             Console.Write(Space(2) & material(i) & vbTab & "|" & vbTab)
             t = Time_Taken(depth(i), Average_speed(i))
@@ -99,7 +99,7 @@ Module Module1
 
         Newlines(1)
 
-        ' Q1 part b.
+        ' Q1 part (b)
         ' Average calculation.
         Console.WriteLine("The time taken by the bullet to reach the target on average was " & Format(Average(total_time, 3), "0.0000") & " seconds")
     End Sub
