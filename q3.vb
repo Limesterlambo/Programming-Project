@@ -1,10 +1,16 @@
-﻿Module Module1
+'Final edit at 16:20 on 14/12/2018
+'The programme allows the user to evaluate the average time taken for a bullet to travel through three distances for each material
+'(wood, steel, titanium). The programme averages the distances and prints out the average time of travel through each material;
+'this data can be used for the purpose of figuring out which is the safest material for testing purposes.
+'Main Contributor: Oliver Monk
+Module Module1
 
     Function Newlines(Number_of_Spaces)
         For i = 1 To Number_of_Spaces
             Console.Write(vbNewLine)
         Next
     End Function
+'Function creates a line break
 
     Sub Main()
         Dim D1A, D1B, D1C As Double : Dim D2A, D2B, D2C As Double : Dim D3A, D3B, D3C As Double
