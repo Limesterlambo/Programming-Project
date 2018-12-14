@@ -145,12 +145,12 @@ Module Module1
         Next
 
         Newlines(2)
-        'producing the tables: 6 tables, Overall Title, Material, Time taken(s)
+        ' producing the tables: 6 tables; Overall Title, Heading, Rows, Calculating Average time taken per combination.
         For I = 0 To 5
 
             Console.WriteLine(Space(1) & UCase(Trim(Combination_Titles(I))) & ":")
 
-            Table_Heading(2, "Material", "Time taken (s)", "", "", "")  'Console.Write(Space(2)) at front 
+            Table_Heading(2, "Material", "Time taken (s)", "", "", "")
             Table_Row(material(0), Format(Time_Taken_Wood(I), "0.000"))
             Table_Row(material(1), Format(Time_Taken_Steel(I), "0.000"))
             Table_Row(material(2), Format(Time_Taken_Titanium(I), "0.000"))
