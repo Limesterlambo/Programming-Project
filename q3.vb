@@ -1,6 +1,6 @@
 'Final edit at 16:20 on 14/12/2018
-'The programme allows the user to evaluate the average time taken for a bullet to travel through three distances for each material
-'(wood, steel, titanium). The programme averages the distances and prints out the average time of travel through each material;
+'The program allows the user to evaluate the average time taken for a bullet to travel through three distances for each material
+'(wood, steel, titanium). The program averages the distances and prints out the average time of travel through each material;
 'this data can be used for the purpose of figuring out which is the safest material for testing purposes.
 'Main Contributor: Oliver Monk
 Module Module1
@@ -24,14 +24,14 @@ Module Module1
         Dim OVPI_Wood, OVPI_Steel, OVPI_Titanium As Double
         'Creating Dim names for Optimal Velocity Percentage Increase values 
 
-        Console.WriteLine("This programme will output the average time taken for a bullet to travel through")
+        Console.WriteLine("This program will output the average time taken for a bullet to travel through")
         Console.WriteLine("the three materials, when given three different depth values. It utilises the optimal")
         Console.WriteLine("weapon attachment setup for each material with regard to bullet velocity.")
         Newlines(1)
-        Console.WriteLine("The purpose of this programme is to determine whether or not there is a material distance")
+        Console.WriteLine("The purpose of this program is to determine whether or not there is a material distance")
         Console.WriteLine("scenario wherein the optimal weapon setup is no longer optimal.")
         Newlines(1)
-        'Introducing the programme to the user
+        'Introducing the program to the user
 
         Velocity_Wood = 323.5
         Velocity_Steel = 180.8
@@ -86,7 +86,7 @@ Module Module1
         Console.WriteLine("is assumed to be 90 degrees relative to the material. This means that the bullet maintains a")
         Console.WriteLine("constant horizontal flight path, and no gravitational acceleration is experienced.")
         Newlines(1)
-        'Discusses the findings of the programe
+        'Discusses the findings of the program
 
     End Sub
 
